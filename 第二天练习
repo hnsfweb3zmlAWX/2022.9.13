@@ -1,0 +1,167 @@
+#define _CRT_SECURE_NO_WARNINGS 1
+
+#include<stdio.h>
+
+#include<string.h>
+//使用了strlen函数，则需引用头文件string.h
+
+//自建函数(自定义函数)：
+int Add(int x, int y)
+{
+	int z = x + y;
+	return z;
+}
+
+int main()
+{
+	//由双引号引起的一串字符成为字符串字面值(String Literal)，简称字符串
+	//字符串应当放入字符数组进行存储
+	char arr1[] = "StringLiteral";
+	char arr2[] = { 'S','t','r','i','n','g','L','i','t','e','r','a','l' };
+	//没有结束标志则出现乱码
+	//字符串结束的标志是一个\0的转义字符，在计算字符串长度时\0是结束标志，不算做字符串内容
+	//转义字符：防止内容被解析为其他语义
+	//例如：\a警告字符，蜂鸣、\b退格符、\f进纸符、\n换行、\r回车、\t水平制表符、\v垂直制表符等
+	char arr3[] = { 'S','t','r','i','n','g','L','i','t','e','r','a','l','\0' };
+	//ASCII编码：因数据在计算机上的存储为二进制，故给每个字符进行编码以便进行存储，如a-97、A-65，其中97、65分别为a与A的ASCII码值
+	//ASCII对应编码详情可查阅ASCII表
+	//结束标志\0的码值为0
+	char arr4[] = { 'S','t','r','i','n','g','L','i','t','e','r','a','l' , 0 };
+	//打印字符串使用%s
+	printf("arr1 : %s\n", arr1);
+	printf("arr2 : %s\n", arr2);
+	printf("arr3 : %s\n", arr3);
+	printf("arr4 : %s\n", arr4);
+
+	//计算字符数组的长度
+	printf("arr1 = %d\n", strlen(arr1));
+	printf("arr2 = %d\n", strlen(arr2));
+	printf("arr3 = %d\n", strlen(arr3));
+	printf("arr4 = %d\n", strlen(arr4));
+	//str:string len;length strlen:字符串长度
+
+	//注：\ddd表示1-3个八进制数字
+	printf("%d\n", strlen("\32"));
+	//以上\32表示八进制的32，即十进制的26,此处的'\32'视为一个字符
+	//注：\xdd表示两个十六进制数
+	printf("%d\n", strlen("\x16"));
+	//以上\x16表示十六进制的16，即十进制的22，此处的'\x16'视为一个字符
+
+	//注释：用于对较难懂的代码进行解释，C语言风格注释符为/*……*/，C++语言风格注释符为//
+	//C语言风格注释符(/*……*/)缺陷：无法嵌套注释
+
+	//选择语句（if语句）
+	int input = 0;
+	printf("你能坚持学习两年吗?(1/0)\n");
+	scanf("%d", &input);
+	if (input == 1)
+	    {
+            printf("加油，你有光明的未来！\n");
+	    }
+	else
+        {
+		    printf("寄，回家卖红薯吧…\n");
+	    }
+	
+	//循环语句（while语句）
+	int line = 1;
+	printf("开始学习！\n");
+	while (line < 30)
+	{
+		printf("敲%d行代码…\n",line);
+		line++;
+	}
+	printf("恭喜你即将走上人生巅峰！\n");
+
+	//使用自建函数(自定义函数)：
+	int num1 = 0;
+	int num2 = 0;
+	int sum = 0;
+	printf("Please enter the num 1 ：");
+	scanf("%d", &num1);
+	printf("Please enter the num 2 ：");
+	scanf("%d", &num2);
+	sum = Add(num1, num2);
+	printf("num1 + num2 = %d\n", sum);
+
+	//数组定义：一组相同类型元素的集合
+	int arr5[10] = { 1,2,3,4,5,6,7,8,9,10 };
+	//定义一个最多存放十个整形的数组
+	printf("%d\n", arr5[4]);
+	//以下标方式访问元素，下标从0开始即自arr5[0]开始，故arr5[4]表示访问第5个元素
+	int i = 0;
+	while (i < 10)
+	{
+		printf("%d ", arr5[i]);
+		i++;
+	}
+	printf("OVER √ \n");
+
+	//算数操作符：+ - * / %
+	//移位操作符(二进制位)：>> <<
+	//位操作符(二进制位)：&(按位与) |(按位或) ^(按位异或)
+	//赋值操作符：= += -= *= /= &= ^= |= >>= <<=
+	//单目操作符(双目/三目)：! - + & sizeof ~ -- ++ * (类型)
+	//关系操作符：	
+	//算术操作符-求余操作：
+	int a;
+	int b;
+	printf("COMPLEMENTATION ：\n");
+	printf("Please enter the a ：");
+	scanf("%d", &a);
+	printf("Please enter the b ：");
+	scanf("%d", &b);
+    int c = a % b;
+	//计算b对a求余，并将结果返回c
+	printf("The answer of a % b = %d \n", c);
+	//移位操作符-左移操作：
+	int d = 1;
+	printf("d = %d \n", d);
+	int e = d << 1;
+	printf("e = %d \n", e);
+	//位操作符-&按位与操作：
+	int f = 3;
+	int g = 5;
+	int h = 3 & 5;
+	printf("f = %d\n", f);
+	printf("g = %d\n", g);
+	printf("h = %d\n", h);
+	//单目操作符操作-否操作：
+	int j = 10;
+	int k = !j;
+	printf("i = %d\n", j);
+	printf("!i = %d\n", k);
+	printf("!!i = %d\n", !k);
+	
+	//单目操作符操作-按(二进制位)位取反：
+	int n = 0;
+	//四个字节，32比特位，即00000000 00000000 00000000 00000000
+	int o = ~n;
+	//四个字节，32比特位，即11111111 11111111 11111111 11111111
+	printf("%d\n", o);
+
+	//比较筛选两个数的较大值
+	int l = 0;
+	int m = 0;
+	printf("Please enter the first number ：");
+	scanf("%d", &l);
+	printf("Please enter the second number ： ");
+	scanf("%d", &m);
+	if (l >= m)
+	{
+		if (l > m)
+		{
+			printf("%d > %d", l, m);
+		}
+		else
+		{
+			printf("%d = %d", l, m);
+		}
+	}
+	else
+	{
+		printf("%d < %d", l, m);
+	}
+
+	return 0;
+}
